@@ -31,7 +31,7 @@ const Home: React.FC = () => {
       </div>
       <div id='subtitle' style={subtitleStyles}>
         <h2 style={h2Styles}>
-          Everyday I'll note down at least one thing I'm{' '}
+          Everyday I&apos;ll note down at least one thing I&apos;m{' '}
           <ColoredText
             text='grateful'
             fontSize={'40px'}
