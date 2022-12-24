@@ -7,11 +7,27 @@ interface IImage {
   height: number;
   width: number;
   borderRadius: number;
+  borderWidth?: number;
 }
 
-const Image: React.FC<IImage> = ({ src, alt, height, width, borderRadius }) => {
+const Image: React.FC<IImage> = ({
+  src,
+  alt,
+  height,
+  width,
+  borderRadius,
+  borderWidth,
+}) => {
   return (
-    <div style={{ borderRadius: `${borderRadius}px`, overflow: 'hidden' }}>
+    <div
+      style={{
+        height: height,
+        width: width,
+        borderRadius: `${borderRadius}px`,
+        border: `${borderWidth ? borderWidth : 0}px solid #000000`,
+        overflow: 'hidden',
+      }}
+    >
       <NextImage src={src} alt={alt} height={height} width={width} />
     </div>
   );

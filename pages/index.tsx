@@ -41,7 +41,9 @@ const Home: React.FC = () => {
           to you for
         </h2>
       </div>
-      <PinkButton text='APPRECIATION OF THE DAY' width={'550px'} />
+      <PinkButton href='today' width={'550px'}>
+        <h1 style={buttonTextStyles}>APPRECIATION OF THE DAY</h1>
+      </PinkButton>
       <p style={designedByStyles}>© Designed and Built by Scotty Sus</p>
     </div>
   );
@@ -74,7 +76,7 @@ const hiPattyStyles: React.CSSProperties = {
   display: 'inline',
   fontSize: '70px',
   fontFamily: 'Mont',
-  fontWeight: 800,
+  fontWeight: 900,
   marginLeft: '20px',
 };
 
@@ -89,6 +91,14 @@ const h2Styles: React.CSSProperties = {
   fontWeight: 600,
   textAlign: 'center',
   margin: '0px auto',
+};
+
+const buttonTextStyles: React.CSSProperties = {
+  margin: '0px auto',
+  fontSize: '30px',
+  fontFamily: 'Arial',
+  fontWeight: 500,
+  color: '#EAEAEA',
 };
 
 const designedByStyles: React.CSSProperties = {
