@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Link from './Link';
 
@@ -19,6 +19,15 @@ const BackButton: React.FC<IBackButton> = ({ children, href, width }) => {
     transition: background-color 0.2s ease;
     :hover {
       background-color: #d9d9d9;
+    }
+
+    @media (max-width: 450px) {
+      height: 50px;
+      width: 50%;
+      font-size: 17px;
+      .faLeft {
+        font-size: 17px !important;
+      }
     }
   `;
 

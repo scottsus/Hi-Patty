@@ -5,31 +5,30 @@ import Link from '../components/Link';
 interface IPinkButton {
   children: JSX.Element | JSX.Element[];
   href: string;
-  width: string;
 }
 
-const PinkButton: React.FC<IPinkButton> = ({ children, href, width }) => {
+const PinkButton: React.FC<IPinkButton> = ({ children, href }) => {
   return (
-    <StyledPinkButton width={width}>
+    <StyledPinkButton>
       <Link href={`/${href}`}>{children}</Link>
     </StyledPinkButton>
   );
 };
 
-interface IStyledPinkButton {
-  width: string;
-}
-
-const StyledPinkButton = styled.button<IStyledPinkButton>`
+const StyledPinkButton = styled.button`
   height: 60px;
-  width: ${(props) => props.width};
-  padding: 10px;
+  padding: 10px 50px;
   border-radius: 50px;
   background-color: #f53770;
   border: none;
   transition: background-color 0.2s ease;
   :hover {
     background-color: #e41e5a;
+  }
+
+  @media (max-width: 450px) {
+    height: 50px;
+    padding: 10px 30px;
   }
 `;
 

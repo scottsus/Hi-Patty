@@ -39,6 +39,10 @@ const AnimatedHandWaveContainer = styled.div`
       transform: rotate(0deg);
     }
   }
+
+  @media (max-width: 450px) {
+    font-size: 50px;
+  }
 `;
 
 export default AnimatedHandWave;

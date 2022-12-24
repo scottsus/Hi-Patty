@@ -16,13 +16,13 @@ const Heart: React.FC<IHeart> = ({ path }) => {
     setIsLiked((isLiked) => !isLiked);
   };
 
-  useEffect(() => {
-    const docRef = firestore.collection('stories').doc(path);
-    docRef
-      .get()
-      .then((doc) => doc.data())
-      .then((data) => setIsLiked((isLiked) => data!.liked));
-  });
+  // useEffect(() => {
+  //   const docRef = firestore.collection('stories').doc(path);
+  //   docRef
+  //     .get()
+  //     .then((doc) => doc.data())
+  //     .then((data) => setIsLiked((isLiked) => data!.liked));
+  // });
 
   return (
     <Button onClick={toggleLiked}>

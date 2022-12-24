@@ -24,12 +24,21 @@ const AppreciationContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 450px) {
+    height: 350px;
+    width: 100%;
+  }
 `;
 
 const List = styled.ul`
   font-size: 30px;
   font-family: Mont, Helvetica;
   font-weight: 700;
+
+  @media (max-width: 450px) {
+    font-size: 25px;
+  }
 `;
 
 const Item = styled.li`

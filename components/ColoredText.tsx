@@ -3,38 +3,14 @@ import styled from 'styled-components';
 
 interface IColoredText {
   text: string;
-  fontSize: string;
-  fontFamily: string;
-  fontWeight: number;
 }
 
-const ColoredText: React.FC<IColoredText> = ({
-  text,
-  fontSize,
-  fontFamily,
-  fontWeight,
-}) => {
-  return (
-    <ColoredTextContainer
-      fontSize={fontSize}
-      fontFamily={fontFamily}
-      fontWeight={fontWeight}
-    >
-      {text}
-    </ColoredTextContainer>
-  );
+const ColoredText: React.FC<IColoredText> = ({ text }) => {
+  return <ColoredTextContainer>{text}</ColoredTextContainer>;
 };
 
-interface IColoredTextContainer {
-  fontSize: string;
-  fontFamily: string;
-  fontWeight: number;
-}
-
-const ColoredTextContainer = styled.span<IColoredTextContainer>`
-  font-size: ${(props) => props.fontSize};
-  font-family: ${(props) => props.fontFamily};
-  font-weight: ${(props) => props.fontWeight};
+const ColoredTextContainer = styled.span`
+  font-weight: 900;
   display: inline;
   background: linear-gradient(
     92.11deg,
