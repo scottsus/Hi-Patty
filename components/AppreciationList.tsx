@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Heart from './Heart';
 
 const AppreciationList: React.FC = () => {
+  const path = new Date().toISOString().split('T')[0];
   return (
     <AppreciationContainer>
       <List>
@@ -11,7 +12,7 @@ const AppreciationList: React.FC = () => {
         <Item>👫 fun times at Pepperdine and the Grove</Item>
       </List>
       <HeartContainer>
-        <Heart />
+        <Heart path={path} />
       </HeartContainer>
     </AppreciationContainer>
   );
