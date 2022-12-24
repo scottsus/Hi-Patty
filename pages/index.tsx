@@ -35,7 +35,7 @@ const Home: React.FC = () => {
           <ColoredText
             text='grateful'
             fontSize={'40px'}
-            fontFamily={'Mont'}
+            fontFamily={'Mont, Helvetica'}
             fontWeight={800}
           />{' '}
           to you for
@@ -75,7 +75,7 @@ const titleStyles: React.CSSProperties = {
 const hiPattyStyles: React.CSSProperties = {
   display: 'inline',
   fontSize: '70px',
-  fontFamily: 'Mont',
+  fontFamily: 'Mont, Helvetica',
   fontWeight: 900,
   marginLeft: '20px',
 };
@@ -87,7 +87,7 @@ const subtitleStyles: React.CSSProperties = {
 
 const h2Styles: React.CSSProperties = {
   fontSize: '40px',
-  fontFamily: 'Mont',
+  fontFamily: 'Mont, Helvetica',
   fontWeight: 600,
   textAlign: 'center',
   margin: '0px auto',

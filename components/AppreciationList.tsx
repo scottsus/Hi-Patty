@@ -26,7 +26,7 @@ const appreciationListStyles: React.CSSProperties = {
 
 const ulStyles: React.CSSProperties = {
   fontSize: '30px',
-  fontFamily: 'Mont',
+  fontFamily: 'Mont, Helvetica',
   fontWeight: 700,
 };
 

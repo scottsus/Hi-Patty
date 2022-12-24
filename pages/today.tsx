@@ -17,7 +17,7 @@ const Today: React.FC = () => {
           <ColoredText
             text='most grateful'
             fontSize='60px'
-            fontFamily='Mont'
+            fontFamily='Mont, Helvetica'
             fontWeight={900}
           />{' '}
           for:
@@ -61,7 +61,7 @@ const mostGratefulStyles: React.CSSProperties = {
 
 const h2Styles: React.CSSProperties = {
   fontSize: '60px',
-  fontFamily: 'Mont',
+  fontFamily: 'Mont, Helvetica',
   fontWeight: 800,
   margin: '0 auto',
 };
@@ -86,14 +86,9 @@ const pinkButtonTextStyles: React.CSSProperties = {
   color: '#EAEAEA',
 };
 
-const backButtonStyles: React.CSSProperties = {
-  background: 'none',
-  border: 'none',
-};
-
 const backToHomeStyles: React.CSSProperties = {
   fontSize: '30px',
-  fontFamily: 'Mont',
+  fontFamily: 'Mont, Helvetica',
   fontWeight: 700,
   display: 'inline',
 };
