@@ -9,7 +9,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export async function getServerSideProps() {
-  const storiesQuery = firestore.collectionGroup('story').limit(2);
+  const storiesQuery = firestore.collectionGroup('stories').limit(2);
   const stories = await storiesQuery
     .get()
     .then((snapshot) => snapshot.docs.map(docToJSON));
@@ -26,7 +26,7 @@ export default function StoryBookPage(props) {
       point1={story.point1}
       point2={story.point2}
       point3={story.point3}
-      liked={story.liked}
+      path={story.path}
     />
   ));
   return (
@@ -47,7 +47,7 @@ const StoryBlock: React.FC<IStoryBlock> = ({
   point1,
   point2,
   point3,
-  liked,
+  path,
 }) => {
   return (
     <StoryBlockDiv>
@@ -58,7 +58,7 @@ const StoryBlock: React.FC<IStoryBlock> = ({
           {point2 && <Point>{point2}</Point>}
           {point3 && <Point>{point3}</Point>}
           <HeartContainer>
-            <Heart isLikedInitially={liked} />
+            <Heart path={path} />
           </HeartContainer>
         </ListContainer>
         <Image

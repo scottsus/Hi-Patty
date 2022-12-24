@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import firestore from '../lib/firebase';
+import styled from 'styled-components';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
 
 interface IHeart {
-  isLikedInitially?: boolean;
+  path: string;
 }
 
-const Heart: React.FC<IHeart> = ({ isLikedInitially }) => {
+const Heart: React.FC<IHeart> = ({ path }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const toggleLiked = async () => {
+    const docRef = firestore.collection('stories').doc(path);
+    docRef.update({ liked: !isLiked });
+    setIsLiked((isLiked) => !isLiked);
+  };
+
   useEffect(() => {
-    if (isLikedInitially) setIsLiked((isLiked) => true);
-  }, [isLikedInitially]);
+    const docRef = firestore.collection('stories').doc(path);
+    docRef
+      .get()
+      .then((doc) => doc.data())
+      .then((data) => setIsLiked((isLiked) => data!.liked));
+  });
+
   return (
-    <Button onClick={() => setIsLiked((isLiked) => !isLiked)}>
+    <Button onClick={toggleLiked}>
       <FontAwesomeIcon
         icon={faHeart}
         style={
