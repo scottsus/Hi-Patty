@@ -9,6 +9,7 @@ interface IImage {
   width: number;
   borderRadius: number;
   borderWidth?: number;
+  margin?: string;
 }
 
 const Image: React.FC<IImage> = ({
@@ -18,12 +19,14 @@ const Image: React.FC<IImage> = ({
   width,
   borderRadius,
   borderWidth,
+  margin,
 }) => {
   const ImageContainer = styled.div`
     height: ${height}px;
     width: ${width}px;
     border-radius: ${borderRadius}px;
     border: ${borderWidth ? borderWidth : 0}px solid #000000;
+    margin: ${margin};
     overflow: hidden;
   `;
 

@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-const Heart: React.FC = () => {
+interface IHeart {
+  isLikedInitially?: boolean;
+}
+
+const Heart: React.FC<IHeart> = ({ isLikedInitially }) => {
   const [isLiked, setIsLiked] = useState(false);
+  useEffect(() => {
+    if (isLikedInitially) setIsLiked((isLiked) => true);
+  }, [isLikedInitially]);
   return (
     <Button onClick={() => setIsLiked((isLiked) => !isLiked)}>
       <FontAwesomeIcon
         icon={faHeart}
         style={
           !isLiked
-            ? { ...heartStyles, color: '#FFFFFF' }
+            ? { ...heartStyles, color: 'transparent' }
             : { ...heartStyles, color: '#FF0000' }
         }
       />
