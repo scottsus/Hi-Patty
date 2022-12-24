@@ -1,7 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Storybook: React.FC = () => {
-  return <></>;
+const StoryBook: React.FC = () => {
+  const arr = [];
+  const stories = arr.map((story) => <StoryPage />);
+  return (
+    <div id='storybook'>
+      <h1 id='storybook-title'>Storybook</h1>
+    </div>
+  );
 };
 
-export default Storybook;
+const StoryPage: React.FC = () => {
+  return <div></div>;
+};
+
+export default StoryBook;

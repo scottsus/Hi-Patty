@@ -1,43 +1,44 @@
 import React from 'react';
+import styled from 'styled-components';
 import Heart from './Heart';
 
 const AppreciationList: React.FC = () => {
   return (
-    <div id='appreciation-list' style={appreciationListStyles}>
-      <ul style={ulStyles}>
-        <li style={liStyles}>📕 Patty and Scotty&apos;s mems v2022</li>
-        <li style={liStyles}>🍽 chill dinner w ur fam @ Spago</li>
-        <li style={liStyles}>👫 fun times at Pepperdine and the Grove</li>
-      </ul>
-      <div style={heartContainerStyles}>
+    <AppreciationContainer>
+      <List>
+        <Item>📕 Patty and Scotty&apos;s mems v2022</Item>
+        <Item>🍽 chill dinner w ur fam @ Spago</Item>
+        <Item>👫 fun times at Pepperdine and the Grove</Item>
+      </List>
+      <HeartContainer>
         <Heart />
-      </div>
-    </div>
+      </HeartContainer>
+    </AppreciationContainer>
   );
 };
 
-const appreciationListStyles: React.CSSProperties = {
-  height: '320px',
-  width: '480px',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-};
+const AppreciationContainer = styled.div`
+  height: 320px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
-const ulStyles: React.CSSProperties = {
-  fontSize: '30px',
-  fontFamily: 'Mont, Helvetica',
-  fontWeight: 700,
-};
+const List = styled.ul`
+  font-size: 30px;
+  font-family: Mont, Helvetica;
+  font-weight: 700;
+`;
 
-const liStyles: React.CSSProperties = {
-  margin: '15px 0px',
-};
+const Item = styled.li`
+  margin: 15px 0px;
+`;
 
-const heartContainerStyles: React.CSSProperties = {
-  margin: '0 auto',
-  display: 'flex',
-  justifyContent: 'center',
-};
+const HeartContainer = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+`;
 
 export default AppreciationList;

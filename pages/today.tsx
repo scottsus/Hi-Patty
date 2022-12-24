@@ -5,14 +5,14 @@ import Image from '../components/Image';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PinkButton from '../components/PinkButton';
-import Link from '../components/Link';
 import BackButton from '../components/BackButton';
+import styled from 'styled-components';
 
-const Today: React.FC = () => {
+const TodayPage: React.FC = () => {
   return (
-    <div id='today' style={todayStyles}>
-      <div id='most-grateful' style={mostGratefulStyles}>
-        <h2 style={h2Styles}>
+    <Today>
+      <MostGratefulContainer>
+        <MostGrateful>
           Today I am{' '}
           <ColoredText
             text='most grateful'
@@ -21,9 +21,9 @@ const Today: React.FC = () => {
             fontWeight={900}
           />{' '}
           for:
-        </h2>
-      </div>
-      <div id='today-main-body' style={mainBodyStyles}>
+        </MostGrateful>
+      </MostGratefulContainer>
+      <MainBody>
         <AppreciationList />
         <Image
           src='/snow.jpeg'
@@ -32,65 +32,65 @@ const Today: React.FC = () => {
           height={360}
           borderRadius={20}
         />
-      </div>
-      <div id='buttons' style={buttonsStyles}>
+      </MainBody>
+      <Buttons>
         <BackButton href='' width='340px'>
           <FontAwesomeIcon icon={faLeftLong} style={{ fontSize: '28px' }} />
-          <h3 style={backToHomeStyles}> Back to Home</h3>
+          <BackTo> Back to Home</BackTo>
         </BackButton>
         <PinkButton href='storybook' width='300px'>
-          <h1 style={pinkButtonTextStyles}>STORYBOOK</h1>
+          <Story>STORYBOOK</Story>
         </PinkButton>
-      </div>
-    </div>
+      </Buttons>
+    </Today>
   );
 };
 
-const todayStyles: React.CSSProperties = {
-  height: '100%',
-  width: '65%',
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-};
+const Today = styled.div`
+  height: 100%;
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-const mostGratefulStyles: React.CSSProperties = {
-  margin: '110px auto 60px',
-};
+const MostGratefulContainer = styled.div`
+  margin: 110px auto 60px;
+`;
 
-const h2Styles: React.CSSProperties = {
-  fontSize: '60px',
-  fontFamily: 'Mont, Helvetica',
-  fontWeight: 800,
-  margin: '0 auto',
-};
+const MostGrateful = styled.h1`
+  font-size: 60px;
+  font-family: Mont, Helvetica;
+  font-weight: 800;
+  margin: 0 auto;
+`;
 
-const mainBodyStyles: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'row',
-};
+const MainBody = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
-const buttonsStyles: React.CSSProperties = {
-  marginTop: '70px',
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'space-between',
-};
+const Buttons = styled.div`
+  margin-top: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 
-const pinkButtonTextStyles: React.CSSProperties = {
-  margin: '0px auto',
-  fontSize: '30px',
-  fontFamily: 'Arial',
-  fontWeight: 500,
-  color: '#EAEAEA',
-};
+const BackTo = styled.h2`
+  font-size: 30px;
+  font-family: Mont, Helvetica;
+  font-weight: 700;
+  display: inline;
+`;
 
-const backToHomeStyles: React.CSSProperties = {
-  fontSize: '30px',
-  fontFamily: 'Mont, Helvetica',
-  fontWeight: 700,
-  display: 'inline',
-};
+const Story = styled.h2`
+  margin: 0 auto;
+  font-size: 30px;
+  font-family: Arial;
+  font-weight: 500;
+  color: #eaeaea;
+`;
 
-export default Today;
+export default TodayPage;

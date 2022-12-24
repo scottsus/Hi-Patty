@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
 
 const Heart: React.FC = () => {
   const [isLiked, setIsLiked] = useState(false);
   return (
-    <button
-      onClick={() => setIsLiked((isLiked) => !isLiked)}
-      style={heartContainerStyles}
-    >
+    <Button onClick={() => setIsLiked((isLiked) => !isLiked)}>
       <FontAwesomeIcon
         icon={faHeart}
         style={
@@ -17,20 +15,21 @@ const Heart: React.FC = () => {
             : { ...heartStyles, color: '#FF0000' }
         }
       />
-    </button>
+    </Button>
   );
 };
 
-const heartContainerStyles: React.CSSProperties = {
-  background: 'none',
-  border: 'none',
-};
+const Button = styled.button`
+  background: none;
+  border: none;
+`;
 
 const heartStyles: React.CSSProperties = {
   fontSize: '30px',
   stroke: '#000000',
   strokeWidth: '50px',
   cursor: 'pointer',
+  transition: 'color 0.2s ease',
 };
 
 export default Heart;

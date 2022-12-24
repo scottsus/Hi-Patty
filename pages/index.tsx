@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import AnimatedHandWave from '../components/AnimatedHandWave';
 import ColoredText from '../components/ColoredText';
 import Image from '../components/Image';
@@ -6,8 +7,8 @@ import PinkButton from '../components/PinkButton';
 
 const Home: React.FC = () => {
   return (
-    <div id='landing-page' style={landingPageStyles}>
-      <div id='pictures' style={picturesStyles}>
+    <LandingPage>
+      <Pictures>
         <Image
           src='/patty.jpeg'
           alt='patty'
@@ -22,15 +23,12 @@ const Home: React.FC = () => {
           width={100}
           borderRadius={10}
         />
-      </div>
-      <div id='title' style={titleStyles}>
-        <AnimatedHandWave />{' '}
-        <h1 id='hi-patty' style={hiPattyStyles}>
-          Hi Patty
-        </h1>
-      </div>
-      <div id='subtitle' style={subtitleStyles}>
-        <h2 style={h2Styles}>
+      </Pictures>
+      <Title>
+        <AnimatedHandWave /> <HiPatty>Hi Patty</HiPatty>
+      </Title>
+      <Subtitle>
+        <Everyday>
           Everyday I&apos;ll note down at least one thing I&apos;m{' '}
           <ColoredText
             text='grateful'
@@ -39,74 +37,74 @@ const Home: React.FC = () => {
             fontWeight={800}
           />{' '}
           to you for
-        </h2>
-      </div>
+        </Everyday>
+      </Subtitle>
       <PinkButton href='today' width={'550px'}>
-        <h1 style={buttonTextStyles}>APPRECIATION OF THE DAY</h1>
+        <Appreciation>APPRECIATION OF THE DAY</Appreciation>
       </PinkButton>
-      <p style={designedByStyles}>© Designed and Built by Scotty Sus</p>
-    </div>
+      <DesignedBy>© Designed and Built by Scotty Sus</DesignedBy>
+    </LandingPage>
   );
 };
 
-const landingPageStyles: React.CSSProperties = {
-  height: '100%',
-  width: '65%',
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-};
+const LandingPage = styled.div`
+  height: 100%;
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-const picturesStyles: React.CSSProperties = {
-  marginTop: '30px',
-  marginLeft: 'auto',
-  marginRight: 0,
-  width: '220px',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-};
+const Pictures = styled.div`
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: 0px;
+  width: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
-const titleStyles: React.CSSProperties = {
-  margin: '50px auto 20px',
-};
+const Title = styled.div`
+  margin: 50px auto 20px;
+`;
 
-const hiPattyStyles: React.CSSProperties = {
-  display: 'inline',
-  fontSize: '70px',
-  fontFamily: 'Mont, Helvetica',
-  fontWeight: 900,
-  marginLeft: '20px',
-};
+const HiPatty = styled.h1`
+  display: inline;
+  font-size: 70px;
+  font-family: Mont, Helvetica;
+  font-weight: 900;
+  margin-left: 20px;
+`;
 
-const subtitleStyles: React.CSSProperties = {
-  width: '90%',
-  margin: '0px auto 60px',
-};
+const Subtitle = styled.div`
+  width: 90%;
+  margin: 0px auto 60px;
+`;
 
-const h2Styles: React.CSSProperties = {
-  fontSize: '40px',
-  fontFamily: 'Mont, Helvetica',
-  fontWeight: 600,
-  textAlign: 'center',
-  margin: '0px auto',
-};
+const Everyday = styled.h2`
+  font-size: 40px;
+  font-family: Mont, Helvetica;
+  font-weight: 600;
+  text-align: center;
+  margin: 0px auto;
+`;
 
-const buttonTextStyles: React.CSSProperties = {
-  margin: '0px auto',
-  fontSize: '30px',
-  fontFamily: 'Arial',
-  fontWeight: 500,
-  color: '#EAEAEA',
-};
+const Appreciation = styled.h3`
+  margin: 0px auto;
+  font-size: 30px;
+  font-family: Arial;
+  font-weight: 500;
+  color: #eaeaea;
+`;
 
-const designedByStyles: React.CSSProperties = {
-  fontSize: '25px',
-  fontFamily: 'Arial',
-  fontWeight: 400,
-  marginTop: 'auto',
-  marginBottom: '70px',
-};
+const DesignedBy = styled.p`
+  font-size: 25px;
+  font-family: Arial;
+  font-weight: 400;
+  margin-top: auto;
+  margin-bottom: 70px;
+`;
 
 export default Home;

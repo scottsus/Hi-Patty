@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Link from './Link';
 
 interface IBackButton {
@@ -8,29 +9,24 @@ interface IBackButton {
 }
 
 const BackButton: React.FC<IBackButton> = ({ children, href, width }) => {
-  const [isHovering, setIsHovering] = useState(false);
-  const toggle = () => setIsHovering((isHovering) => !isHovering);
-  return (
-    <button
-      style={
-        !isHovering
-          ? { ...backButtonStyles, backgroundColor: '#FFFFFF', width: width }
-          : { ...backButtonStyles, backgroundColor: '#D9D9D9', width: width }
-      }
-      onMouseEnter={toggle}
-      onMouseLeave={toggle}
-    >
-      <Link href={`/${href}`}>{children}</Link>
-    </button>
-  );
-};
+  const Button = styled.button`
+    height: 60px;
+    width: ${width};
+    padding: 10px;
+    border-radius: 50px;
+    border: none;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+    :hover {
+      background-color: #d9d9d9;
+    }
+  `;
 
-const backButtonStyles: React.CSSProperties = {
-  height: '60px',
-  padding: '10px',
-  borderRadius: '50px',
-  border: 'none',
-  transition: 'background-color 0.2s ease',
+  return (
+    <Button>
+      <Link href={`/${href}`}>{children}</Link>
+    </Button>
+  );
 };
 
 export default BackButton;

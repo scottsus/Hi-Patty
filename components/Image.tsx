@@ -1,5 +1,6 @@
 import React from 'react';
 import NextImage from 'next/image';
+import styled from 'styled-components';
 
 interface IImage {
   src: string;
@@ -18,18 +19,18 @@ const Image: React.FC<IImage> = ({
   borderRadius,
   borderWidth,
 }) => {
+  const ImageContainer = styled.div`
+    height: ${height}px;
+    width: ${width}px;
+    border-radius: ${borderRadius}px;
+    border: ${borderWidth ? borderWidth : 0}px solid #000000;
+    overflow: hidden;
+  `;
+
   return (
-    <div
-      style={{
-        height: height,
-        width: width,
-        borderRadius: `${borderRadius}px`,
-        border: `${borderWidth ? borderWidth : 0}px solid #000000`,
-        overflow: 'hidden',
-      }}
-    >
+    <ImageContainer>
       <NextImage src={src} alt={alt} height={height} width={width} />
-    </div>
+    </ImageContainer>
   );
 };
 
