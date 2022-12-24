@@ -21,20 +21,35 @@ const Image: React.FC<IImage> = ({
   borderWidth,
   margin,
 }) => {
-  const ImageContainer = styled.div`
-    height: ${height}px;
-    width: ${width}px;
-    border-radius: ${borderRadius}px;
-    border: ${borderWidth ? borderWidth : 0}px solid #000000;
-    margin: ${margin};
-    overflow: hidden;
-  `;
-
   return (
-    <ImageContainer>
+    <ImageContainer
+      height={height}
+      width={width}
+      borderRadius={borderRadius}
+      borderWidth={borderWidth}
+      margin={margin}
+    >
       <NextImage src={src} alt={alt} height={height} width={width} />
     </ImageContainer>
   );
 };
+
+interface IImageContainer {
+  height: number;
+  width: number;
+  borderRadius: number;
+  borderWidth?: number;
+  margin?: string;
+}
+
+const ImageContainer = styled.div<IImageContainer>`
+  height: ${(props) => props.height}px;
+  width: ${(props) => props.width}px;
+  border-radius: ${(props) => props.borderRadius}px;
+  border: ${(props) => (props.borderWidth ? props.borderWidth : 0)}px solid
+    #000000;
+  margin: ${(props) => props.margin};
+  overflow: hidden;
+`;
 
 export default Image;
