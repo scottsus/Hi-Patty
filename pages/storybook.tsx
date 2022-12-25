@@ -39,7 +39,7 @@ export default function StoryBookPage(props) {
   ));
   useEffect(() => {
     setStoryBlocks((storyBlocks) => [...storyBlocks, ...newStoryBlocks]);
-  }, []);
+  });
 
   const getMorePosts = async () => {
     console.log('getting more posts...');

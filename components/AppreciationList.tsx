@@ -7,9 +7,12 @@ const AppreciationList: React.FC = () => {
   return (
     <AppreciationContainer>
       <List>
-        <Item>📕 Patty and Scotty&apos;s mems v2022</Item>
-        <Item>🍽 chill dinner w ur fam @ Spago</Item>
-        <Item>👫 fun times at Pepperdine and the Grove</Item>
+        <Item>
+          🎄 sorry we couldn&apos;t spend our first xmas together but... MERRY
+          XMAS PATTY!!
+        </Item>
+        <Item>👧 calling me and showing ur kiddy hair</Item>
+        <Item>🎁 showing me ur unboxing vid</Item>
       </List>
       <HeartContainer>
         <Heart path={path} />
@@ -19,15 +22,17 @@ const AppreciationList: React.FC = () => {
 };
 
 const AppreciationContainer = styled.div`
-  height: 320px;
-  width: 480px;
+  min-height: 320px;
+  width: 460px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 20px;
 
   @media (max-width: 450px) {
-    height: 350px;
+    min-height: 350px;
     width: 100%;
+    margin-right: 0;
   }
 `;
 

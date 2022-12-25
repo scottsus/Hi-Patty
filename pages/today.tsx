@@ -58,7 +58,7 @@ const Today = styled.div`
 `;
 
 const MostGratefulContainer = styled.div`
-  margin: 110px auto 60px;
+  margin: 100px auto 20px;
 
   @media (max-width: 450px) {
     margin: 35px auto 0px;
@@ -103,7 +103,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Buttons = styled.div`
-  margin-top: 70px;
+  margin-top: 40px;
   width: 100%;
   display: flex;
   justify-content: space-between;
