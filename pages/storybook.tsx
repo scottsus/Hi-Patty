@@ -266,8 +266,8 @@ const HomeButton = styled.button`
   }
 
   @media (max-width: 450px) {
-    left: 300px;
-    top: 730px;
+    left: 350px;
+    top: 750px;
     height: 70px;
     width: 70px;
   }
