@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import firestore from '../lib/firebase';
 import { IStoryBlock, docToJSON } from '../lib/utils';
 import Heart from '../components/Heart';
-import NextImage from 'next/image';
 import Link from '../components/Link';
+import NextImage from 'next/image';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const LIMIT = 5;
 
@@ -18,14 +19,15 @@ export async function getServerSideProps() {
   const stories = await storiesQuery
     .get()
     .then((snapshot) => snapshot.docs.map(docToJSON));
-  console.log(stories);
   return {
     props: { stories },
   };
 }
 
 export default function StoryBookPage(props) {
-  const storyBlocks: JSX.Element[] = props.stories.map((story: IStoryBlock) => (
+  const [storyBlocks, setStoryBlocks] = useState<JSX.Element[]>([]);
+  const [hasMore, setHasMore] = useState(true);
+  const newStoryBlocks = props.stories.map((story: IStoryBlock) => (
     <StoryBlock
       key={story.date}
       date={story.date}
@@ -35,17 +37,24 @@ export default function StoryBookPage(props) {
       path={story.path}
     />
   ));
+  useEffect(() => {
+    setStoryBlocks((storyBlocks) => [...storyBlocks, ...newStoryBlocks]);
+  }, []);
+
   const getMorePosts = async () => {
-    const last = props.stories[props.stories.length - 1];
-    const cursor = last.path;
+    console.log('getting more posts...');
+    if (storyBlocks.length < 1) return;
+    const cursor = storyBlocks[storyBlocks.length - 1].props.path;
     const moreStoriesQuery = firestore
       .collectionGroup('stories')
       .orderBy('date', 'desc')
-      .limit(LIMIT)
-      .startAfter(cursor);
+      .startAfter(new Date(cursor))
+      .limit(LIMIT);
     const moreStories = await moreStoriesQuery
       .get()
       .then((snapshot) => snapshot.docs.map(docToJSON));
+    if (moreStories.length < LIMIT) setHasMore(false);
+    console.log('MORE:', moreStories);
     const moreStoryBlocks = moreStories.map((story) => (
       <StoryBlock
         key={story.date}
@@ -56,20 +65,30 @@ export default function StoryBookPage(props) {
         path={story.path}
       />
     ));
-    storyBlocks.concat(moreStoryBlocks);
+    setStoryBlocks((storyBlocks) => [...storyBlocks, ...moreStoryBlocks]);
   };
   return (
     <StoryBook>
       <StoryBookTitle>📕 Storybook</StoryBookTitle>
-      <StoryBlockContainer>{storyBlocks}</StoryBlockContainer>
+      <StoryBlockContainer>
+        <InfiniteScroll
+          dataLength={storyBlocks.length}
+          next={getMorePosts}
+          hasMore={hasMore}
+          loader={<InfiniteText>Loading...</InfiniteText>}
+          endMessage={
+            <InfiniteText>
+              All stories seen! 🥂 to making new memories together 🥰
+            </InfiniteText>
+          }
+        >
+          {storyBlocks}
+        </InfiniteScroll>
+      </StoryBlockContainer>
       <HomeButton>
-        {/* <Link href='/'> */}
-        <FontAwesomeIcon
-          icon={faHome}
-          style={homeIconStyles}
-          onClick={getMorePosts}
-        />
-        {/* </Link> */}
+        <Link href='/'>
+          <FontAwesomeIcon icon={faHome} style={homeIconStyles} />
+        </Link>
       </HomeButton>
     </StoryBook>
   );
@@ -84,7 +103,7 @@ const StoryBlock: React.FC<IStoryBlock> = ({
 }) => {
   return (
     <StoryBlockDiv>
-      <Date>{date}</Date>
+      <DateStyled>{date}</DateStyled>
       <BodyContainer>
         <ListContainer>
           <Point>{point1}</Point>
@@ -156,7 +175,7 @@ const StoryBlockDiv = styled.div`
   }
 `;
 
-const Date = styled.h1`
+const DateStyled = styled.h1`
   font-size: 35px;
   font-family: Mont, Helvetica;
   font-weight: 800;
@@ -223,6 +242,14 @@ const ImageWrapper = styled.div`
     width: 220px;
     margin: 30px auto 0px;
   }
+`;
+
+const InfiniteText = styled.h4`
+  font-size: 20px;
+  font-family: Mont, Helvetica;
+  font-weight: 800;
+  text-align: center;
+  margin: 10px auto 20px;
 `;
 
 const HomeButton = styled.button`
