@@ -42,7 +42,6 @@ export default function StoryBookPage(props) {
   }, []);
 
   const getMorePosts = async () => {
-    console.log('getting more posts...');
     if (storyBlocks.length < 1) return;
     const cursor = storyBlocks[storyBlocks.length - 1].props.path;
     const moreStoriesQuery = firestore
@@ -54,7 +53,6 @@ export default function StoryBookPage(props) {
       .get()
       .then((snapshot) => snapshot.docs.map(docToJSON));
     if (moreStories.length < LIMIT) setHasMore(false);
-    console.log('MORE:', moreStories);
     const moreStoryBlocks = moreStories.map((story) => (
       <StoryBlock
         key={story.date}
