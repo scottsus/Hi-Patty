@@ -74,6 +74,10 @@ const ImageWrapper = styled.div`
 
 const Title = styled.div`
   margin: 50px auto 20px;
+
+  @media (max-width: 450px) {
+    margin: 140px auto 20px;
+  }
 `;
 
 const HiPatty = styled.h1`

@@ -1,7 +1,7 @@
 import React from 'react';
 import AppreciationList from '../components/AppreciationList';
 import ColoredText from '../components/ColoredText';
-import Image from '../components/Image';
+import NextImage from 'next/image';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PinkButton from '../components/PinkButton';
@@ -18,14 +18,14 @@ const TodayPage: React.FC = () => {
       </MostGratefulContainer>
       <MainBody>
         <AppreciationList />
-        <Image
-          src='/snow.jpeg'
-          alt='random pic of the day'
-          width={360}
-          height={360}
-          borderRadius={20}
-          margin='20px auto 0px'
-        />
+        <ImageWrapper>
+          <NextImage
+            src='/snow.jpeg'
+            alt='random pic of the day'
+            width={360}
+            height={360}
+          />
+        </ImageWrapper>
       </MainBody>
       <Buttons>
         <BackButton href='' width='340px'>
@@ -86,6 +86,19 @@ const MainBody = styled.div`
     width: 95%;
     margin: 10px auto;
     align-items: center;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  height: 360px;
+  width: 360px;
+  border-radius: 20px;
+  margin: 20px auto 0px;
+  overflow: hidden;
+
+  @media (max-width: 450px) {
+    height: 270px;
+    width: 270px;
   }
 `;
 

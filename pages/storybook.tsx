@@ -8,18 +8,24 @@ import Link from '../components/Link';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const LIMIT = 5;
+
 export async function getServerSideProps() {
-  const storiesQuery = firestore.collectionGroup('stories').limit(2);
+  const storiesQuery = firestore
+    .collectionGroup('stories')
+    .orderBy('date', 'desc')
+    .limit(LIMIT);
   const stories = await storiesQuery
     .get()
     .then((snapshot) => snapshot.docs.map(docToJSON));
+  console.log(stories);
   return {
     props: { stories },
   };
 }
 
 export default function StoryBookPage(props) {
-  const storyBlocks = props.stories.map((story) => (
+  const storyBlocks: JSX.Element[] = props.stories.map((story: IStoryBlock) => (
     <StoryBlock
       key={story.date}
       date={story.date}
@@ -29,14 +35,41 @@ export default function StoryBookPage(props) {
       path={story.path}
     />
   ));
+  const getMorePosts = async () => {
+    const last = props.stories[props.stories.length - 1];
+    const cursor = last.path;
+    const moreStoriesQuery = firestore
+      .collectionGroup('stories')
+      .orderBy('date', 'desc')
+      .limit(LIMIT)
+      .startAfter(cursor);
+    const moreStories = await moreStoriesQuery
+      .get()
+      .then((snapshot) => snapshot.docs.map(docToJSON));
+    const moreStoryBlocks = moreStories.map((story) => (
+      <StoryBlock
+        key={story.date}
+        date={story.date}
+        point1={story.point1}
+        point2={story.point2}
+        point3={story.point3}
+        path={story.path}
+      />
+    ));
+    storyBlocks.concat(moreStoryBlocks);
+  };
   return (
     <StoryBook>
       <StoryBookTitle>📕 Storybook</StoryBookTitle>
       <StoryBlockContainer>{storyBlocks}</StoryBlockContainer>
       <HomeButton>
-        <Link href='/'>
-          <FontAwesomeIcon icon={faHome} style={homeIconStyles} />
-        </Link>
+        {/* <Link href='/'> */}
+        <FontAwesomeIcon
+          icon={faHome}
+          style={homeIconStyles}
+          onClick={getMorePosts}
+        />
+        {/* </Link> */}
       </HomeButton>
     </StoryBook>
   );
@@ -203,6 +236,13 @@ const HomeButton = styled.button`
   position: fixed;
   :hover {
     background-color: #555555;
+  }
+
+  @media (max-width: 450px) {
+    left: 300px;
+    top: 730px;
+    height: 70px;
+    width: 70px;
   }
 `;
 
