@@ -70,7 +70,7 @@ const HeartContainer = styled.div`
 `;
 
 const EmptyContainer = styled.div`
-  min-height: 320px;
+  min-height: 180px;
   width: 460px;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,6 @@ const EmptyContainer = styled.div`
   margin-right: 20px;
 
   @media (max-width: 450px) {
-    min-height: 350px;
     width: 100%;
     margin-right: 0;
   }
