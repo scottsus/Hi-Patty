@@ -7,8 +7,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PinkButton from '../components/PinkButton';
 import BackButton from '../components/BackButton';
 import styled from 'styled-components';
+import firestore from '../lib/firebase';
+import { docToJSON } from '../lib/utils';
 
-const TodayPage: React.FC = () => {
+export async function getServerSideProps() {
+  const story = await firestore
+    .collection('stories')
+    .get()
+    .then((snapshot) => snapshot.docs.map(docToJSON));
+  return { props: { story } };
+}
+
+export default function TodayPage(props) {
   return (
     <Today>
       <MostGratefulContainer>
@@ -17,7 +27,11 @@ const TodayPage: React.FC = () => {
         </MostGrateful>
       </MostGratefulContainer>
       <MainBody>
-        <AppreciationList />
+        <AppreciationList
+          point1={props.story.point1}
+          point2={props.story.point2}
+          point3={props.story.point3}
+        />
         <ImageWrapper>
           <NextImage
             src='/snow.jpeg'
@@ -42,7 +56,7 @@ const TodayPage: React.FC = () => {
       </Buttons>
     </Today>
   );
-};
+}
 
 const Today = styled.div`
   height: 100%;
@@ -136,5 +150,3 @@ const Story = styled.h2`
     font-size: 17px;
   }
 `;
-
-export default TodayPage;
